@@ -1,0 +1,16 @@
+Cama       : PI102
+Desc       : HAB 102
+Asignable  : S
+Internac   : 182775
+Ficha      : 3209
+Apellidoyn : CAPUTO LORENZO CONSTANTINO
+Nivel      : A
+Codigo     : 02
+Estad      : S
+Orden1     : 0
+Estado     : 
+Usuario    : DLUQUE
+Fechaproc  : 20120627
+Horaproc   : 12:03:18
+
+
