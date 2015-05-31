@@ -40,5 +40,38 @@ def first_validaringreso(request):
 	camas_ocupadas_porcentaje = (float(camas_ocupadas) * 100) / float(total_camas)
 	camas_ocupadas_porcentaje = float("{0:.2f}".format(camas_ocupadas_porcentaje))
 	context['CAMAS_OCUPADAS'] = camas_ocupadas_porcentaje
+	context['CAMAS_DISPONIBLES'] = 100 - camas_ocupadas_porcentaje
+
+	lista_edificio2 = ["Planta Baja", "Piso 1", "Piso 2"]
+	edificio2 = [ "H20", "H21", "H22" ]
+	camas_edificio = [] 
+	for i in edificio2:
+		camas_planta = []
+		print "I: " + str(i)
+		desc_edificio2 = camas.filter(cama__istartswith = i).values()
+		for j in desc_edificio2:
+			tmplist = []
+			tmplist.append(j['cama'])
+			tmplist.append(j['descripcion'])
+			tmplist.append(j['internac'])
+			camas_planta.append(tmplist)
+
+		camas_edificio.append(camas_planta)
+
+	print camas_edificio
+			#print desc_edificio2[j]
+		#desc_edificio2 = camas.filter(cama__istartswith = i).values()
+		#dic_camas_edificio2[i] = camas_edificio2
+	#	print dir(camas_edificio2)
+	#	print edificio2[i]
+
+#	for key,piso in edificio2.items():
+#		print "imprimir key"
+#		print piso.values()
+	context["EDIFICIO2"] = edificio2 
+	context["LISTA_EDIFICIO2"] = lista_edificio2 
+	context["CAMAS_PLANTA"] = camas_planta
+	context["CAMAS_EDIFICIO"] = camas_edificio
+
 	return render(request, 'estadisticasOcupacion/snd_panelgeneral.html', context)
 

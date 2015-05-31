@@ -4,7 +4,7 @@
 <!-- Start Formoid form-->
 <link rel="stylesheet" href="/static/formoid-solid-blue.css" type="text/css" />
 <script type="text/javascript" src="/static/jquery.min.js"></script>
-<form class="formoid-solid-blue" style="background-color:#FFFFFF;font-size:14px;font-family:'Roboto',Arial,Helvetica,sans-serif;color:#34495E;max-width:480px;min-width:150px" method="post" action="/turnosapp/elegirTurno/">
+<form class="formoid-solid-blue" style="background-color:#FFFFFF;font-size:14px;font-family:'Roboto',Arial,Helvetica,sans-serif;color:#34495E;max-width:800px;min-width:150px" method="post" action="/turnosapp/elegirTurno/">
         {% csrf_token %}
 	<div class="title">
 		<h2 style="text-align: center">Sanatorio San Lucas</h2>
@@ -12,12 +12,12 @@
 	</div>
 	<div class="title2" align="center">
 		<h3>OCUPACION: {{ CAMAS_OCUPADAS }}%</h3>
-		<h3>DNI: {{ DNIPACIENTE }}</h3>
+		<h3>DISPONIBLES: {{ CAMAS_DISPONIBLES }}%</h3>
 		<input type="hidden" name="nombrepaciente" value="{{ PACIENTE }}">
 		<input type="hidden" name="dnipaciente" value="{{ DNIPACIENTE }}">
 	</div>
 	<div class="title3">
-		<h4>Seleccione Medico</h4>
+		<h4>Edificio 1</h4>
 	</div>
                 {% for key, value in DICMEDICOTMP.iteritems %}
 	<div class="element-input"> 
@@ -30,7 +30,73 @@
 	
 	</div>
                 {% endfor %} 
+	<div class="title3">
+		<h4>Edificio 2</h4>
+	</div>
+<!--
 
+	<div>
+		<h3 style="font-size: 20px">Planta Baja</h3>
+	</div>
+	<div>
+	<table> 
+		<tr>
+	     {% for i in CAMAS_PLANTA_BAJA %}
+			<td>
+        <h3 style="font-size: 15px; color: black" align="left">   
+			{% if i.2 > 0 %}
+				<img src="/static/cama_ocupada.jpg" width="80" height="80">
+			{% else %}
+				<img src="/static/cama_libre.jpg" width="80" height="80">
+  		 	{% endif %}		 
+			</br>
+			{{ i.1 }}
+	    </h3>
+			</td>
+                {% endfor %} 
+		</tr>
+	</table>
+	</div>
+
+-->
+	{% for i in CAMAS_EDIFICIO %}
+		{% if forloop.first %}
+	<div>
+		<h3 style="font-size: 20px">Planta Baja</h3>
+	</div>
+		{% endif %}
+		{% if forloop.counter == 2 %}
+	<div>
+		<h3 style="font-size: 20px">Primer Piso</h3>
+	</div>
+		{% endif %}
+		{% if forloop.counter == 3 %}
+	<div>
+		<h3 style="font-size: 20px">Segundo Piso</h3>
+	</div>
+
+		{% endif %}
+	<div>
+	<table> 
+		<tr>
+		{% for j in i %}
+			<td>
+        <h3 style="font-size: 15px; color: black" align="left">   
+			{% if j.2 > 0 %}
+				<img src="/static/cama_ocupada.jpg" width="80" height="80">
+			{% else %}
+				<img src="/static/cama_libre.jpg" width="80" height="80">
+  		 	{% endif %}		 
+			</br>
+			{{ j.1 }}
+	    </h3>
+			</td>
+                {% endfor %} 
+		</tr>
+	</table>
+
+	</div>
+	{% endfor %}
 <div class="submit">
 	<input type="submit" name="return" value="Salir">
 </div>
