@@ -1,14 +1,4 @@
-
-
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8" />
-	<title>Sistema de Turnos</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body class="blurBg-false" style="background-color:#EBEBEB">
-
+{% include "estadisticasOcupacion/header.html" %}
 
 
 <!-- Start Formoid form-->
@@ -17,10 +7,11 @@
 <form class="formoid-solid-blue" style="background-color:#FFFFFF;font-size:14px;font-family:'Roboto',Arial,Helvetica,sans-serif;color:#34495E;max-width:480px;min-width:150px" method="post" action="/turnosapp/elegirTurno/">
         {% csrf_token %}
 	<div class="title">
-		<h2>Sistema de Turnos</h2>
+		<h2 style="text-align: center">Sanatorio San Lucas</h2>
+		<h2 style="text-align: center">Resumen</h2>
 	</div>
 	<div class="title2" align="center">
-		<h3>PACIENTE: {{ PACIENTE }}</h3>
+		<h3>OCUPACION: {{ CAMAS_OCUPADAS }}%</h3>
 		<h3>DNI: {{ DNIPACIENTE }}</h3>
 		<input type="hidden" name="nombrepaciente" value="{{ PACIENTE }}">
 		<input type="hidden" name="dnipaciente" value="{{ DNIPACIENTE }}">

@@ -13,6 +13,7 @@ from django.db import models
 
 
 class Camas(models.Model):
+    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     cama = models.CharField(db_column='Cama', max_length=20, blank=True, null=True)  # Field name made lowercase.
     descripcion = models.CharField(db_column='Descripcion', max_length=20, blank=True, null=True)  # Field name made lowercase.
     asignable = models.CharField(db_column='Asignable', max_length=20, blank=True, null=True)  # Field name made lowercase.
