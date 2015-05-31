@@ -42,20 +42,27 @@ def first_validaringreso(request):
 	context['CAMAS_OCUPADAS'] = camas_ocupadas_porcentaje
 	context['CAMAS_DISPONIBLES'] = 100 - camas_ocupadas_porcentaje
 
-	lista_edificio2 = ["Planta Baja", "Piso 1", "Piso 2"]
 	edificio2 = [ "H20", "H21", "H22" ]
 	camas_edificio = [] 
 	for i in edificio2:
 		camas_planta = []
+		piso_camas = 0
 		print "I: " + str(i)
 		desc_edificio2 = camas.filter(cama__istartswith = i).values()
+		generando_porcentaje = 0
 		for j in desc_edificio2:
+			piso_camas = piso_camas + 1
 			tmplist = []
 			tmplist.append(j['cama'])
 			tmplist.append(j['descripcion'])
 			tmplist.append(j['internac'])
 			camas_planta.append(tmplist)
+			if j['internac'] > 0:
+				generando_porcentaje = generando_porcentaje + 1
 
+		piso_ocupadas_porcentaje = (float(generando_porcentaje) * 100) / float(piso_camas)
+		piso_ocupadas_porcentaje = float("{0:.2f}".format(piso_ocupadas_porcentaje))
+		camas_planta.append(piso_ocupadas_porcentaje)
 		camas_edificio.append(camas_planta)
 
 	print camas_edificio
@@ -69,7 +76,6 @@ def first_validaringreso(request):
 #		print "imprimir key"
 #		print piso.values()
 	context["EDIFICIO2"] = edificio2 
-	context["LISTA_EDIFICIO2"] = lista_edificio2 
 	context["CAMAS_PLANTA"] = camas_planta
 	context["CAMAS_EDIFICIO"] = camas_edificio
 

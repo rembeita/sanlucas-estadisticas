@@ -84,7 +84,11 @@
         <h3 style="font-size: 15px; color: black" align="left">   
 			{% if j.2 > 0 %}
 				<img src="/static/cama_ocupada.jpg" width="80" height="80">
-			{% else %}
+  		 	{% endif %}		 
+			{% if forloop.last %}
+				<h5 style="font-size: 10px; color: black;">Ocupacion {{ j }}</h5>	
+  		 	{% endif %}		 
+			{% if j.2 = 0 %}
 				<img src="/static/cama_libre.jpg" width="80" height="80">
   		 	{% endif %}		 
 			</br>
