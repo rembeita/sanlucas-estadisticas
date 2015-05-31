@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'estadisticasOcupacion',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -54,8 +55,8 @@ ROOT_URLCONF = 'sanlucasEstadisticas.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+       'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join('templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -108,4 +109,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = ('/home/rodrigo/Development/github/sanlucas-estadisticas/sanlucasEstadisticas/','/home/rodrigo/Development/github/sanlucas-estadisticas/Estadisticas','/home/rodrigo/Development/github/sanlucas-estadisticas/sanlucasEstadisticas/templates/resources',)
+STATICFILES_DIRS = ('/home/rodrigo/Development/github/sanlucas-estadisticas/sanlucasEstadisticas/templates/resources',)
