@@ -11,52 +11,57 @@
 		<h2 style="text-align: center">Resumen</h2>
 	</div>
 	<div class="title2" align="center">
-		<h3>OCUPACION: {{ CAMAS_OCUPADAS }}%</h3>
-		<h3>DISPONIBLES: {{ CAMAS_DISPONIBLES }}%</h3>
+		{% if  CAMAS_OCUPADAS > 70 %}
+		<h3 style="color: green"><strong>OCUPACION: {{ CAMAS_OCUPADAS }}%</strong></h3>
+		<h3 style="color: green"><strong>DISPONIBLES: {{ CAMAS_DISPONIBLES }}%</strong></h3>
+		{% else %}
+		<h3 style="color: red"><strong>OCUPACION: {{ CAMAS_OCUPADAS }}%</strong></h3>
+		<h3 style="color: red"><strong>DISPONIBLES: {{ CAMAS_DISPONIBLES }}%</strong></h3>
+		{% endif %}
 		<input type="hidden" name="nombrepaciente" value="{{ PACIENTE }}">
 		<input type="hidden" name="dnipaciente" value="{{ DNIPACIENTE }}">
 	</div>
-	<div class="title3">
-		<h4>Edificio 1</h4>
+	<div class="title">
+		<h2 style="text-align: center">Edificio 1</h2>
 	</div>
 	{% for i in CAMAS_EDIFICIO1 %}
 		{% if forloop.first %}
 	<div>
-		<h3 style="font-size: 20px">Neo Natologia</h3>
+		<h3 style="font-size: 20px" align="center">Neo Natologia</h3>
 	</div>
 		{% endif %}
 		{% if forloop.counter == 2 %}
 	<div>
-		<h3 style="font-size: 20px">Primer Piso</h3>
+		<h3 style="font-size: 20px" align="center">Primer Piso</h3>
 	</div>
 		{% endif %}
 		{% if forloop.counter == 3 %}
 	<div>
-		<h3 style="font-size: 20px">Segundo Piso</h3>
+		<h3 style="font-size: 20px" align="center">Segundo Piso</h3>
 	</div>
 
 		{% endif %}
 		{% if forloop.counter == 4 %}
 	<div>
-		<h3 style="font-size: 20px">Tercer Piso</h3>
+		<h3 style="font-size: 20px" align="center">Tercer Piso</h3>
 	</div>
 
 		{% endif %}
 		{% if forloop.counter == 5 %}
 	<div>
-		<h3 style="font-size: 20px">Unidad Coronaria</h3>
+		<h3 style="font-size: 20px" align="center">Unidad Coronaria</h3>
 	</div>
 
 		{% endif %}
 		{% if forloop.counter == 6 %}
 	<div>
-		<h3 style="font-size: 20px">Pediatria</h3>
+		<h3 style="font-size: 20px" align="center">Pediatria</h3>
 	</div>
 
 		{% endif %}
 		{% if forloop.counter == 7 %}
 	<div>
-		<h3 style="font-size: 20px">Unidad Tratamientos Intensivos</h3>
+		<h3 style="font-size: 20px" align="center">Unidad Tratamientos Intensivos</h3>
 	</div>
 
 		{% endif %}
@@ -70,7 +75,9 @@
 				<img src="/static/cama_ocupada.jpg" width="80" height="80">
   		 	{% endif %}		 
 			{% if forloop.last %}
-				<h5 style="font-size: 10px; color: black;">Ocupacion {{ j }}</h5>	
+			  </td></tr>
+                                <tr><td>
+				<h5 style="font-size: 14px; color: blue;" align="center">Ocupacion <br>{{ j }}%</h5>	
   		 	{% endif %}		 
 			{% if j.2 = 0 %}
 				<img src="/static/cama_libre.jpg" width="80" height="80">
@@ -90,22 +97,22 @@
 	{% endfor %}
 
 
-	<div class="title3">
-		<h4>Edificio 2</h4>
+	<div class="title">
+		<h2 style="text-align: center">Edificio 2</h2>
 	</div>
 	{% for i in CAMAS_EDIFICIO2 %}
 		{% if forloop.first %}
-	<div>
+	<div align="center">
 		<h3 style="font-size: 20px">Planta Baja</h3>
 	</div>
 		{% endif %}
 		{% if forloop.counter == 2 %}
-	<div>
+	<div align="center">
 		<h3 style="font-size: 20px">Primer Piso</h3>
 	</div>
 		{% endif %}
 		{% if forloop.counter == 3 %}
-	<div>
+	<div align="center">
 		<h3 style="font-size: 20px">Segundo Piso</h3>
 	</div>
 
@@ -120,7 +127,9 @@
 				<img src="/static/cama_ocupada.jpg" width="80" height="80">
   		 	{% endif %}		 
 			{% if forloop.last %}
-				<h5 style="font-size: 10px; color: black;">Ocupacion {{ j }}</h5>	
+				</td></tr>
+				<tr><td>
+				<h5 style="font-size: 14px; color: blue;" align="center">Ocupacion <br>{{ j }}%</h5>	
   		 	{% endif %}		 
 			{% if j.2 = 0 %}
 				<img src="/static/cama_libre.jpg" width="80" height="80">
