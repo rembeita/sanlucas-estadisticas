@@ -42,8 +42,31 @@ def first_validaringreso(request):
 	context['CAMAS_OCUPADAS'] = camas_ocupadas_porcentaje
 	context['CAMAS_DISPONIBLES'] = 100 - camas_ocupadas_porcentaje
 
+	edificio1 = [ "NEO", "PI1", "PI2", "PI3", "UC5", "UP", "UTI" ]
 	edificio2 = [ "H20", "H21", "H22" ]
-	camas_edificio = [] 
+	camas_edificio1 = [] 
+	camas_edificio2 = [] 
+	for i in edificio1:
+		camas_planta = []
+		piso_camas = 0
+		print "I: " + str(i)
+		desc_edificio2 = camas.filter(cama__istartswith = i).values()
+		generando_porcentaje = 0
+		for j in desc_edificio2:
+			piso_camas = piso_camas + 1
+			tmplist = []
+			tmplist.append(j['cama'])
+			tmplist.append(j['descripcion'])
+			tmplist.append(j['internac'])
+			camas_planta.append(tmplist)
+			if j['internac'] > 0:
+				generando_porcentaje = generando_porcentaje + 1
+
+		piso_ocupadas_porcentaje = (float(generando_porcentaje) * 100) / float(piso_camas)
+		piso_ocupadas_porcentaje = float("{0:.2f}".format(piso_ocupadas_porcentaje))
+		camas_planta.append(piso_ocupadas_porcentaje)
+		camas_edificio1.append(camas_planta)
+
 	for i in edificio2:
 		camas_planta = []
 		piso_camas = 0
@@ -63,9 +86,10 @@ def first_validaringreso(request):
 		piso_ocupadas_porcentaje = (float(generando_porcentaje) * 100) / float(piso_camas)
 		piso_ocupadas_porcentaje = float("{0:.2f}".format(piso_ocupadas_porcentaje))
 		camas_planta.append(piso_ocupadas_porcentaje)
-		camas_edificio.append(camas_planta)
+		camas_edificio2.append(camas_planta)
 
-	print camas_edificio
+	print camas_edificio1
+	print camas_edificio2
 			#print desc_edificio2[j]
 		#desc_edificio2 = camas.filter(cama__istartswith = i).values()
 		#dic_camas_edificio2[i] = camas_edificio2
@@ -75,9 +99,12 @@ def first_validaringreso(request):
 #	for key,piso in edificio2.items():
 #		print "imprimir key"
 #		print piso.values()
+
+	context["EDIFICIO1"] = edificio1
 	context["EDIFICIO2"] = edificio2 
 	context["CAMAS_PLANTA"] = camas_planta
-	context["CAMAS_EDIFICIO"] = camas_edificio
+	context["CAMAS_EDIFICIO1"] = camas_edificio1
+	context["CAMAS_EDIFICIO2"] = camas_edificio2
 
 	return render(request, 'estadisticasOcupacion/snd_panelgeneral.html', context)
 

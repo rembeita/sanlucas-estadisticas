@@ -19,47 +19,81 @@
 	<div class="title3">
 		<h4>Edificio 1</h4>
 	</div>
-                {% for key, value in DICMEDICOTMP.iteritems %}
-	<div class="element-input"> 
-			<label class="title"></label> 
-				<div class="item-cont" align="center">
-					<button name="datosmedico" type="submit"id="botonmedico"  value="{{ value.1 }} || {{value.3}} || {{value.0 }}" >
-					{{ value.1 }} || {{value.3}}						 
-					</button>
-				</div>
-	
-	</div>
-                {% endfor %} 
-	<div class="title3">
-		<h4>Edificio 2</h4>
-	</div>
-<!--
-
+	{% for i in CAMAS_EDIFICIO1 %}
+		{% if forloop.first %}
 	<div>
-		<h3 style="font-size: 20px">Planta Baja</h3>
+		<h3 style="font-size: 20px">Neo Natologia</h3>
 	</div>
+		{% endif %}
+		{% if forloop.counter == 2 %}
+	<div>
+		<h3 style="font-size: 20px">Primer Piso</h3>
+	</div>
+		{% endif %}
+		{% if forloop.counter == 3 %}
+	<div>
+		<h3 style="font-size: 20px">Segundo Piso</h3>
+	</div>
+
+		{% endif %}
+		{% if forloop.counter == 4 %}
+	<div>
+		<h3 style="font-size: 20px">Tercer Piso</h3>
+	</div>
+
+		{% endif %}
+		{% if forloop.counter == 5 %}
+	<div>
+		<h3 style="font-size: 20px">Unidad Coronaria</h3>
+	</div>
+
+		{% endif %}
+		{% if forloop.counter == 6 %}
+	<div>
+		<h3 style="font-size: 20px">Pediatria</h3>
+	</div>
+
+		{% endif %}
+		{% if forloop.counter == 7 %}
+	<div>
+		<h3 style="font-size: 20px">Unidad Tratamientos Intensivos</h3>
+	</div>
+
+		{% endif %}
 	<div>
 	<table> 
 		<tr>
-	     {% for i in CAMAS_PLANTA_BAJA %}
+		{% for j in i %}
 			<td>
         <h3 style="font-size: 15px; color: black" align="left">   
-			{% if i.2 > 0 %}
+			{% if j.2 > 0 %}
 				<img src="/static/cama_ocupada.jpg" width="80" height="80">
-			{% else %}
+  		 	{% endif %}		 
+			{% if forloop.last %}
+				<h5 style="font-size: 10px; color: black;">Ocupacion {{ j }}</h5>	
+  		 	{% endif %}		 
+			{% if j.2 = 0 %}
 				<img src="/static/cama_libre.jpg" width="80" height="80">
   		 	{% endif %}		 
 			</br>
-			{{ i.1 }}
+			{{ j.1 }}
 	    </h3>
 			</td>
+                {% if forloop.counter == 7 %}
+			<tr></tr>
+                {% endif %}
                 {% endfor %} 
 		</tr>
 	</table>
-	</div>
 
--->
-	{% for i in CAMAS_EDIFICIO %}
+	</div>
+	{% endfor %}
+
+
+	<div class="title3">
+		<h4>Edificio 2</h4>
+	</div>
+	{% for i in CAMAS_EDIFICIO2 %}
 		{% if forloop.first %}
 	<div>
 		<h3 style="font-size: 20px">Planta Baja</h3>
